@@ -1,0 +1,117 @@
+* { font-family: 'Inter', sans-serif }
+body { margin: 0; }
+
+.header {
+	height: 90px;
+	position: sticky;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.05);
+}
+.header .container {
+	width: calc(100% - 40px);
+	max-width: 800px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	column-gap: 20px;
+}
+.header nav {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 30px;
+}
+.header nav a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 18px;
+	transition: 200ms all ease;
+}
+.header nav a:hover {
+	color: #1B579E;
+}
+
+.home-hero {
+	width: calc(100% - 40px);
+	max-width: 800px;
+	margin: 60px auto 30px auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 30px;
+}
+.home-hero .profile {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 5px #fff, 0 10px 20px rgba(0,0,0,0.2);
+}
+.home-hero .container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+.home-hero h1 {
+	font-size: 42px;
+	font-weight: bold;
+	color: #000;
+	margin: 0;
+}
+.home-hero h2 {
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+	margin: 0;
+}
+.home-hero h3 {
+	font-size: 18px;
+	font-weight: medium;
+	color: #1B579E;
+	margin: 0;
+}
+.home-hero p {
+	font-size: 16px;
+	font-weight: normal;
+	color: #303030;
+	margin: 0;
+}
+.home-hero .social {
+	display: flex;
+	flex-direction: row;
+	column-gap: 10px;
+	margin: 10px 0 0 0;
+}
+.home-hero .social a {
+	transition: 300ms all ease;
+}
+.home-hero .social a:hover {
+	transform: scale(0.9);
+}
+
+.page-header {
+	font-size: 42px;
+	font-weight: 700;
+	text-align: center;
+	padding: 0 30px;
+	margin: 80px 0 50px;
+}
+
+.main-footer {
+	margin: 100px 0 50px;
+	text-align: center;
+	color: #666;
+	font-size: 14px;
+}
+.main-footer a {
+	color: #444;
+	text-decoration: none;
+	font-weight: 500;
+	transition: 300ms all ease;
+}
+.main-footer a:hover {
+	color: #000;
+}
