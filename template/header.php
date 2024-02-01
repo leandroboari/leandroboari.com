@@ -19,8 +19,12 @@
 				<img src="./assets/img/leandro-boari-blue-logo.png" alt="Leandro Boari" class="logo">
 			</a>
 			<nav>
-				<a href="/portfolio">Portfólio</a>
-				<a href="/contato">Contato</a>
+				<a href="/portfolio" class="<?=$currentRoute=="portfolio"?"active":""?>">
+					Portfólio
+				</a>
+				<a href="/contato" class="<?=$currentRoute=="contato"?"active":""?>">
+					Contato
+				</a>
 			</nav>
 		</div>
 	</header>

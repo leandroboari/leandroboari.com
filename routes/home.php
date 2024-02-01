@@ -1,6 +1,7 @@
 <?php
 $title = "Leandro Boari";
 $description = "Programador full-stack e UI/UX designer";
+$currentRoute = "home";
 include "./template/header.php";
 ?>
 <div class="home-hero">
