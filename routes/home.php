@@ -1,6 +1,6 @@
 <?php
-$title = "Leandro Boari";
-$description = "Programador full-stack e UI/UX designer";
+$title = "Leandro Boari - Programador full-stack e UI/UX designer";
+$description = "Proativo em diversos projetos de tecnologia e inovação, compartilhando experiências no desenvolvimento de hardware e software com criatividade e dedicação. Com mais de 10 anos de atuação no desenvolvimento de sistemas web e dispositivos embarcados para automação de processos.";
 $currentRoute = "home";
 include "./template/header.php";
 ?>
