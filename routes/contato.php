@@ -21,6 +21,18 @@ if($_POST) {
 	if(strlen($message) < 4)
 		$errors[] = ["input" => "message", "message" => "Mensagem inválida."];
 
+	$captcha = isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : "";
+
+	$secretKey = "6Lf5AmQpAAAAAIfasQkZUTFRM6LZZAXM1WMqRTmD";
+	$ip = $_SERVER['REMOTE_ADDR'];
+
+	$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+	$response = file_get_contents($url);
+	$responseKeys = json_decode($response,true);
+	if(!$responseKeys["success"]) {
+		$errors[] = ["input" => "other", "message" => "Você não está habilitado para enviar esta mensagem."];
+	}
+
 	$response["response"]["name"] = $name;
 	$response["response"]["email"] = $email;
 	$response["response"]["message"] = $message;
@@ -51,7 +63,9 @@ if($_POST) {
 			$message = $header.$body.$footer;
 			$mail->Body = $message;
 			$response["success"] = "Enviado com sucesso!";
-		} catch (Exception $e) {}
+		} catch (Exception $e) {
+			$errors[] = ["input" => "other", "message" => "Erro no sistema."];
+		}
 	} else {
 		$response["errors"] = $errors;
 	}
@@ -63,6 +77,7 @@ $description = "Entre em contato para transformarmos suas ideias em realidade. E
 $currentRoute = "contato";
 include "./template/header.php";
 ?>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <div class="loading"></div>
 <div class="page-header">
 	<div class="icon">✉️</div>
@@ -86,7 +101,7 @@ include "./template/header.php";
 		<div class="helper error" id="messageHelper"></div>
 	</div>
 	<div class="helper success" id="buttonHelper"></div>
-	<button type="submit">Enviar</button>
+	<button type="submit" class="g-recaptcha" data-sitekey="6Lf5AmQpAAAAAFQIlp51m6EX_1M6oPUGHPSPHlyg" data-callback="onSubmit" data-action="submit">Enviar</button>
 </form>
 <script>
 const form = document.querySelector("form");
