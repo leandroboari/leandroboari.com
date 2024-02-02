@@ -1,0 +1,8 @@
+<?php
+define("MAIL_NAME", "");
+define("MAIL_FROM", "");
+define("MAIL_REPLY_TO", "");
+define("SMTP_HOST", "");
+define("SMTP_USER", "");
+define("SMTP_PASS", "");
+define("SMTP_PORT", 587);
