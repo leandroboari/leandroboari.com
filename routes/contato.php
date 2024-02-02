@@ -50,10 +50,11 @@ if($_POST) {
 			$mail->Port = SMTP_PORT;
 			$mail->setFrom(MAIL_FROM, MAIL_NAME);
 			$mail->addAddress(CONTACT_RECIPIENT);
+			$mail->addReplyTo(MAIL_FROM, MAIL_NAME);
 			$mail->isHTML(true);
 			$mail->CharSet = 'UTF-8';
 			$mail->Subject = "Contato LeandroBoari.com";
-			$header = "<html><body>";
+			$header = "<html><head></head><body>";
 			$date = date("d/m/Y H:i:s");
 			$body = "Alguém enviou pelo site solicitando atendimento:<br /><br />";
 			$body .= "Nome: $name <br />";
@@ -63,6 +64,7 @@ if($_POST) {
 			$footer = "</body></html>";
 			$message = $header.$body.$footer;
 			$mail->Body = $message;
+			$mail->send();
 			$response["success"] = "Enviado com sucesso!";
 		} catch (Exception $e) {
 			$errors[] = ["input" => "other", "message" => "Erro no sistema."];
