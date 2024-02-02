@@ -23,19 +23,20 @@ if($_POST) {
 
 	$captcha = isset($_POST["g-recaptcha-response"]) ? $_POST["g-recaptcha-response"] : "";
 
-	$secretKey = "6Lf5AmQpAAAAAIfasQkZUTFRM6LZZAXM1WMqRTmD";
+	$captcaSecretKey = "6Lf5AmQpAAAAAIfasQkZUTFRM6LZZAXM1WMqRTmD";
 	$ip = $_SERVER['REMOTE_ADDR'];
 
-	$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
-	$response = file_get_contents($url);
-	$responseKeys = json_decode($response,true);
-	if(!$responseKeys["success"]) {
+	$captchaUrl = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($captcaSecretKey) .  '&response=' . urlencode($captcha);
+	$captchaResponse = file_get_contents($captchaUrl);
+	$captchaResponseKeys = json_decode($captchaResponse,true);
+	if(!$captchaResponseKeys["success"]) {
 		$errors[] = ["input" => "other", "message" => "Você não está habilitado para enviar esta mensagem."];
 	}
 
 	$response["response"]["name"] = $name;
 	$response["response"]["email"] = $email;
 	$response["response"]["message"] = $message;
+	$response["response"]["captcha"] = $captcha;
 
 	if(sizeof($errors) == 0) {
 		$mail = new PHPMailer(true);
@@ -100,6 +101,7 @@ include "./template/header.php";
 		<textarea name="message" id="message"></textarea>
 		<div class="helper error" id="messageHelper"></div>
 	</div>
+	<div class="helper error" id="otherHelper"></div>
 	<div class="helper success" id="buttonHelper"></div>
 	<button type="submit" class="g-recaptcha" data-sitekey="6Lf5AmQpAAAAAFQIlp51m6EX_1M6oPUGHPSPHlyg" data-callback="onSubmit" data-action="submit">Enviar</button>
 </form>
@@ -110,8 +112,7 @@ function setLoading(active) {
 	if(active) loading.classList.add("active");
 	else loading.classList.remove("active");
 }
-form.addEventListener("submit", (event) => {
-	event.preventDefault();
+function onSubmit() {
 	setLoading(true);
 	document.querySelectorAll(".helper").forEach(item => {
 		item.classList.remove("active");
@@ -123,6 +124,7 @@ form.addEventListener("submit", (event) => {
 	request.onload = () => {
 		if (request.status >= 200 && request.status < 300) {
 			var response = JSON.parse(request.responseText);
+			console.log(response)
 			if(response.errors) {
 				response.errors.forEach(item => {
 					var input = document.querySelector("#"+item.input+"Helper");
@@ -141,7 +143,7 @@ form.addEventListener("submit", (event) => {
 		}, 300);
 	};
 	request.send(formData);
-});
+};
 </script>
 <?php
 include "./template/footer.php";
