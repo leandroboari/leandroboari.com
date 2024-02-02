@@ -33,11 +33,6 @@ if($_POST) {
 		$errors[] = ["input" => "other", "message" => "Você não está habilitado para enviar esta mensagem."];
 	}
 
-	$response["response"]["name"] = $name;
-	$response["response"]["email"] = $email;
-	$response["response"]["message"] = $message;
-	$response["response"]["captcha"] = $captcha;
-
 	if(sizeof($errors) == 0) {
 		$mail = new PHPMailer(true);
 		try {
@@ -126,7 +121,6 @@ function onSubmit() {
 	request.onload = () => {
 		if (request.status >= 200 && request.status < 300) {
 			var response = JSON.parse(request.responseText);
-			console.log(response)
 			if(response.errors) {
 				response.errors.forEach(item => {
 					var input = document.querySelector("#"+item.input+"Helper");
