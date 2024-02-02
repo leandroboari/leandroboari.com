@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="<?=$description?>">
-<meta property="og:image" content="https://www.leandroboari.com//assets/img/leandro-boari-profile.jpg">
+<meta property="og:image" content="https://www.leandroboari.com/assets/img/leandro-boari-profile.jpg">
 <link href="/assets/css/style.css?v=1.0" type="text/css" rel="stylesheet">
 <link href="/assets/img/favicon.png" type="image/png" rel="icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
