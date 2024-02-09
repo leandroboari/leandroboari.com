@@ -6,6 +6,15 @@ include "./template/header.php";
 $portfolio = [
 	[
 		"logo" => [
+			"image" => "/assets/img/portfolio/pedreira-bastos/pedreira-bastos-logo.png",
+			"height" => "40px"
+		],
+		"service" => "Website Corporativo",
+		"description" => "Desenvolvimento de landing page para empresa de mineração.",
+		"image" => "/assets/img/portfolio/pedreira-bastos/pedreira-bastos-landing-page.png"
+	],
+	[
+		"logo" => [
 			"image" => "/assets/img/portfolio/lanchashb/lanchashb-logo.png",
 			"height" => "70px"
 		],
